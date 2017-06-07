@@ -1,14 +1,5 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-#    RewriteRule ^(v[0-9]+\.[0-9]+)\/((?s).*)$ "-" [E=VAR:$1]
-#    RewriteCond %{ENV:VAR} !-d
-#    RewriteRule ^.*$ %{ENV:VAR} [F,L]
-
-#    RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !v[0-9]+\.[0-9]+/install.php
-### TODO: THIS IS DEVELOPMENT DIRECTIVE. NEED TO REMOVE THIS IN PRODUCTION VERSION. ###
-    RewriteCond %{REQUEST_FILENAME} !v[0-9]+\.[0-9]+/install-dev/compile.php
-    RewriteCond %{REQUEST_FILENAME} !v[0-9]+\.[0-9]+/install-dev/styles/installer.css
-### =============================================================================== ###
     RewriteRule ^(v[0-9]+\.[0-9]+)\/((?s).*)$ $1/ep.php?path=$2&api_ver=$1 [QSA,L]
 </IfModule>
